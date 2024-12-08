@@ -1,4 +1,6 @@
-# 1.1 Getting Started
+# Chapter 1 - A Tutorial Introduction
+
+## 1.1 Getting Started
 The only way to learn a new programming language is by writing programs in it. The first program to write is the same for all languages:
 
 ```c
@@ -12,7 +14,7 @@ int main() {
 The main function is declared with the return type of an **int**. The return value is 0 after running the printf statement. Printf is included in the stdio header file.
 
 
-# 1.2 Variables and Arithmetic Expressions
+## 1.2 Variables and Arithmetic Expressions
 The next program uses the formula C = (5/9)(F-32) to print the following table of Fahrenheit temperatures and their centigrade or Celsius equivalents.
 
 ```
@@ -64,7 +66,7 @@ The C Programming Language provides several other data types besides int and flo
 
 The size of these objects is also machine-dependent. There are also arrays, structures and u8nions of these basic types, pointers to them, and functions that return them, all of which we will meet in due course.
 
-# 1.3 The for Statement
+## 1.3 The for Statement
 There are plenty of different ways to write a program for a particular task. Let's try a variation on the temperature converter.
 ```c
 #include <stdio.h>
@@ -90,7 +92,7 @@ main() {
 }
 ```
 
-# 1.5 Character Input and Output
+## 1.5 Character Input and Output
 We are going to consider a family of related programs for processing character data. You will find that many programs are just expanded versions of the prototypes that we discuss here.
 
 The model of input and output supported by the standard library is very simple. Text input or output, regardless of where it originates or where it goes to, is dealt with as streams of characters. A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followed by a newline character. It is the responsibility of the lbirary to make each input or output stream confirm this model; the C programmer using hte library need not worry about how lines are represented outside the program.
@@ -107,7 +109,7 @@ putchar(c);
 ```
 prints the content of the integer variable c as a character, usually o nthe screen. Calls to ```putchar``` and ```printf``` may be interleaved; the output will appear in the order in which the calls are made.
 
-# 1.5.1 File Copying
+## 1.5.1 File Copying
 Given ```getchar``` and ```putchar```, you can write a surprising amount of useful code without knowing anything more about input and output. The simplest example is a program that copies its input to its output one character at a time:
 ```
 read a character
@@ -146,7 +148,7 @@ main() {
 ```
 The ```while``` gets a character, assigns it to ```c```, and then tests whether the character was the end-of-file signal. If it was not, the body of the ```while``` is executed, printing the character. The ```while``` then repeats. When the end of the input is finally reached, the ```while``` terminates and so does ```main```.
 
-# 1.5.3 Line Counting
+## 1.5.3 Line Counting
 The next program counts input lines. As we mentioned above, the standard library ensures that an input text stream appears as a sequence of lines, each terminated by a newline. Hence, counting lines is just counting newlines:
 ```c
 #include <stdio.h>
@@ -187,7 +189,7 @@ main() {
 }
 ```
 
-# 1.6 Arrays
+## 1.6 Arrays
 This is how to write a program that counts the number of occurrences of each digit, of white space characters (blank, tab, newline), and of all other characters.
 ```c
 #include <stdio.h>
@@ -331,7 +333,7 @@ int main() {
 }
 ```
 
-# 1.7 Functions
+## 1.7 Functions
 In C, a function is equivalent to a subroutine or function in Fortran. It allows for encapsulation and keep code clean.
 
 Here is the function ```power``` and a main program to exercise it, so you can see the whole structure at once.
@@ -365,7 +367,7 @@ return-type function-name(parameter declarations, if any) {
     statements
 }
 ```
-# 1.9 Character Arrays
+## 1.9 Character Arrays
 The most common type of array in C is the array of characters.
 ```
 while (there is another line)
