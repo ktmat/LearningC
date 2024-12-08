@@ -423,4 +423,5 @@ void copy(char to[], char from[]) {
 }
 ```
 A string in C is stored as such:
+|-|-|-|-|-|-|-|
 |h|e|l|l|o|\n|\0|
