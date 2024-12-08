@@ -128,3 +128,20 @@ main() {
     }
 }
 ```
+The program for copying would be written more soncisely by experienced C programmers. In C, any assignment, such as
+```c
+c = getchar();
+```
+is an expression and has a value, which is the value of the left hand side after the assignment. This means that an assignment can appear as part of a larger expression, If the assignment of a character to ```c``` is put inside the test part of a ```while``` loop, the copy program can be written this way:
+```c
+#include <stdio.h>
+
+main() {
+    int c;
+    
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+    }
+}
+```
+The ```while``` gets a character, assigns it to ```c```, and then tests whether the character was the end-of-file signal. If it was not, the body of the ```while``` is executed, printing the character. The ```while``` then repeats. .When the end of the input is finally reached, the ```while``` terminates and so does ```main```.
