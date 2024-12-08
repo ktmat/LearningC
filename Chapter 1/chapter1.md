@@ -425,3 +425,39 @@ void copy(char to[], char from[]) {
 A string in C is stored as such:
 |   h   |   e   |   l   |   l   |   o   |  \n   |  \0   |
 |-------|-------|-------|-------|-------|-------|-------|
+
+**Exercise 1-19.** Write a function ```reverse(s)``` that reverses the character string ```s```.
+```c
+#include <stdio.h>
+#include <string.h>
+
+#define MAXLINE 1000
+
+void reverse(char s[]) {
+    int length = strlen(s);
+    printf("strlen: %d\n", strlen(s));
+    int i, temp;
+
+    // Example with hello.
+    printf("length: %d\n", length);
+    for (i = 0; i < length / 2; i++) {
+        temp = s[i]; // temp = h (first iteration)
+        s[i] = s[length - i - 1]; // s[0] = s[6 - 0 - 1], s[0] = s[5] = \n
+        s[length - i - 1] = temp; // temp = s[6 - 0 - 1], temp = \n
+    }
+}
+
+int main() {
+    char line[MAXLINE];
+
+    while (fgets(line, MAXLINE, stdin) != NULL) {
+        size_t len = strlen(line);
+        if (len > 0 && line[len - 1] == '\n') {
+            line[len - 1] == '\0';
+        }
+        reverse(line);
+        printf("%s\n", line);
+    }
+    return 0;
+}
+```
