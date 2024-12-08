@@ -26,7 +26,7 @@ C provides six operators for bit manipulation. These can only be applied to ```c
 |Operator|Explanation|
 |--------|-----------|
 |&|Bitwise AND|
-|||Bitwise inclusive OR|
+|\||Bitwise inclusive OR|
 |^|Bitwise exclusive OR|
 |<<|Left shift|
 |>>|Right shift|
