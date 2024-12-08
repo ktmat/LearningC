@@ -128,7 +128,7 @@ main() {
     }
 }
 ```
-The program for copying would be written more soncisely by experienced C programmers. In C, any assignment, such as
+The program for copying would be written more concisely by experienced C programmers. In C, any assignment, such as
 ```c
 c = getchar();
 ```
@@ -144,4 +144,4 @@ main() {
     }
 }
 ```
-The ```while``` gets a character, assigns it to ```c```, and then tests whether the character was the end-of-file signal. If it was not, the body of the ```while``` is executed, printing the character. The ```while``` then repeats. .When the end of the input is finally reached, the ```while``` terminates and so does ```main```.
+The ```while``` gets a character, assigns it to ```c```, and then tests whether the character was the end-of-file signal. If it was not, the body of the ```while``` is executed, printing the character. The ```while``` then repeats. When the end of the input is finally reached, the ```while``` terminates and so does ```main```.
