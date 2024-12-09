@@ -72,3 +72,63 @@ int strindex(char s[], char t[]) {
     return -1;
 }
 ```
+## 4.6 Static Variables
+The ```static``` declaration limits the scope of that object to the rest of the source file being compiled. They preserve their value regardless of scope.
+```c
+static char buf[BUFSIZE];
+static int bufp = 0;
+int getch(void) {...}
+void ungetch(int c) {...}
+```
+The ```static``` declaration can be used for both variables and functions. Normally, functions are global, visible to any part of the program. If a function is declared ```static```, its name is invisible outside of the file in which it is declared.
+## 4.7 Register Variables
+A ```register``` declaration advises the compiler that the variable in question will be heavily used. THe idea is that the ```register``` variables are to be placed in machine registers, which may result in smaller and faster programs But compilers are free to ignore the advice.
+```c
+register int x;
+register char c;
+```
+## 4.10 Recursion
+C functions may be used recursively. Here is an example of recursion.
+```c
+#include <stdio.h>
+
+void printd(int n) {
+    if (n < 0) {
+        putchar('-');
+        n = -n;
+    }
+    if (n / 10) {
+        printd(n / 10);
+    }
+    putchar(n % 10 + '0');
+}
+```
+The ```qsort``` function in C makes use of this recursion.
+```c
+void qsort(int v[], int left, int right) {
+    int i, last;
+    void swap(int v[], int i, int j);
+    if (left >= right) {
+        return;
+    }
+    swap(v, left, (left + right)/2);
+    last = left;
+    for (i = left + 1; i <= right; i++) {
+        if (v[i] < v[left]) {
+            swap(v, ++last, i);
+        }
+    }
+    swap(v, left, last);
+    qsort(v, left, last - 1);
+    qsort(v, last + 1, right);
+}
+```
+This is where swap is defined as follows:
+```c
+void swap(int v[], int i, int j) {
+    int temp;
+
+    temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
+}
