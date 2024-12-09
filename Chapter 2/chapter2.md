@@ -31,3 +31,11 @@ C provides six operators for bit manipulation. These can only be applied to ```c
 |<<|Left shift|
 |>>|Right shift|
 |~|One's complement (unary)|
+
+## 2.11 Conditional Expressions
+**Exercise 2-10.** Rewrite the function lower, which converts upper case letters to lower case, with a conditional expression instead of if-else.
+```c
+int lower(int c) {
+    return (c >= 'A' && c <= 'Z') ? (c + 'a' - 'A') : c;
+}
+```
