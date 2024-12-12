@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+// Executed with ./main 100000 100 1000
+
 int n, range, r1, r2, useCounts;
 int size;
 int *numbersArray;
@@ -10,16 +12,16 @@ int binarySearch(int arr[], int low, int high, int x) {
     while (low <= high) {
         int mid = low + (high - low) / 2;
 
-        if (arr[mid] == x) {
-            return mid;
-        }
-
-        else if (arr[mid] > x) {
+        if (arr[mid] == -1 || arr[mid] > x) {
             high = mid - 1;
         }
 
-        else {
+        else if (arr[mid] < x) {
             low = mid + 1;
+        }
+
+        else {
+            return mid;
         }
     }
     return low;
@@ -39,21 +41,22 @@ int find(int v) {
 }
 
 int add(int v) {
-    int index = binarySearch(numbersArray, 0, size, v);
+    int index = binarySearch(numbersArray, 0, size - 1, v);
+    printf("\nIndex: %d\n", index);
     int negativeIndex = -1;
     // find the next -1
     for (int i = index; i < size; i++) {
         if (numbersArray[i] == -1) {
             negativeIndex = i;
-            break;
+            break;  // Stop once the next -1 is found
         }
     }
-
-    for (int j = negativeIndex - 1; j >= index; j--) {
+    
+    printf("\nNegative Index Value: %d\n", numbersArray[negativeIndex - 1]);
+    for (int j = negativeIndex - 1; j >= index; j--) { 
         numbersArray[j+1] = numbersArray[j];
     }
 
-    // Insert the value at the correct position
     numbersArray[index] = v;
 
 
