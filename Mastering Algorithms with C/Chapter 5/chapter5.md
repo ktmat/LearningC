@@ -368,9 +368,127 @@ void dlist_init(DList *list, void (*destroy)(void *data));
 
 **Description:** Initialises the doubly-linked list specified by ```list```. This operation must be called for a doubly-linked list before the list can be used with any other operation. The ```destroy``` argument provides a way to free dynamically allocated data when ```dlist_destroy``` is called. It works in a manner similar to that described for ```list_destroy```. For a doubly-linked list containing data that should not be freed, ```destroy``` should be set to NULL.
 
-**Complexity:** O(1)
+**Complexity:** $\mathcal{O}(1)$
 
+**dlist_destroy**
+```c
+void dlist_destroy(DList *list);
+```
+**Return Value:** None.
 
+**Description:** Destroys the doubly-linked list specified by ```list```. No other operations are permitted after calling ```dlist_destroy``` unless ```dlist_init``` is called again. The ```dlist_destroy``` operation removes all elements from a doubly-linked list and calls teh function passed as ```destroy``` to ```dlist_init``` once for each element as it is removed, provided ```destroy``` was not set to NULL.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_ins_next**
+```c
+int dlist_ins_next(DList *list, DListElmt *element, const void *data);
+```
+**Return Value:** $0$ if inserting the element is successful, or $-1$ otherwise.
+
+**Description:** Inserts an element just after ```element``` in the doubly-linked list specified by ```list```. When inserting into an empty list, ```element``` may point anywhere, but should be NULL to avoid confusion. The new elmeent contains a pointer to ```data```, so the memory referenced by ```data``` should remain valid as long as the element remains in the list. It is the responsibility of the caller to manage the storage associated with ```data```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_ins_prev**
+```c
+int dlist_ins_prev(DList *list, DListElmt *element, const void *data);
+```
+**Return Value:** $0$ if inserting the element is successful, or $-1$ otherwise.
+
+**Description:** Inserts an element just before ```element``` in the doubly-linked list specified by ```list```. When inserting into an empty list, ```element``` may point anywhere, but should be NULL to avoid confusion. The new element contains a pointer to ```data```, so the memory referenced by ```data``` should remain valid as long as the element remains in the list. It is the responsibility of the caller to manage the storage associated with ```data```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_remove**
+```c
+int dlist_remove(DList *list, DListElmt *element, void **data);
+```
+**Return Value:** $0$ if removing the element is successful, or $-1$ otherwise.
+
+**Description:** Removes the element specified as ```element``` from the doubly-linked list specified by ```list```. Upon return, ```data``` points to the data stored in the element that was removed. It is the responsibility of the caller to manage the storage associated with the data.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_size**
+```c
+int dlist_size(const DList *list);
+```
+**Return Value:** Number of elements in the list.
+
+**Description:** Macro that evaluates to the number of elements in the doubly-linked list specified by ```list```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_head**
+```c
+DListElmt *dlist_head(const DList *list);
+```
+**Return Value:** Element at the head of the list.
+
+**Description:** Macro that evaluates to the element at the head of the doubly-linked list specified by ```list```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_tail**
+```c
+DListElmt *dlist_tail(const DList *list);
+```
+**Return Value:** Element at the tail of the list.
+
+**Description:** Macro that evalautes to the element at the tail of the doubly-linked list specified by ```list```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_is_head**
+```c
+int dlist_is_head(const DListElmt *element);
+```
+**Return Value:** $1$ if the element is at the head of the list, or $0$ otherwise.
+
+**Description:** Macro that determines whether the element specified as ```element``` is at the head of a doubly-linked list.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_is_tail**
+```c
+int dlist_is_tail(const DListElmt *element);
+```
+**Return Value:** $1$ if the element is at the tail of the list, or $0$ otherwise.
+
+**Description:** Macro that determines whether the element specified as ```element``` is at the tail of a doubly-linked list.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_data**
+```c
+void *dlist_data(const DListElmt *element);
+```
+**Return Value:** Data stored in the element.
+
+**Description:** Macro that evaluates to the data stored in the element of a doubly-linked list specified by ```element```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_next**
+```c
+DListElmt *dlist_next(const DListElmt *element);
+```
+**Return Value:** Element following the specified element.
+
+**Description:** Macro that evalutes to the element of a dobuly-linked list following the element specified by ```element```.
+
+**Complexity:** $\mathcal{O}(1)$
+
+**dlist_prev**
+```c
+DListElmt *dlist_prev(const DListElmt *element);
+```
+**Return Value:** Element preceding the specified element.
+
+**Description:** Macro that evaluates to the element of a doubly-linked list preceding the element specified by ```element```.
+
+**Complexity:** $\mathcal{O}(1)$
 
 ### Implementation and Analysis of Doubly Linked Lists
 ```c
@@ -562,3 +680,6 @@ int dlist_remove(DList *list, DListElmt *element, void **data) {
     return 0;
 }
 ```
+
+## Description of Circular Lists
+The circular list is another form of linked list that provides additional flexibility in traversing elements. A circular list may be singly-linked or doubly-linked, but its distinguishing feature is that it has no tail. In a circular list, the *next* pointer of the last element points back to its first element rather than to NULL. In the case of a doubly-linked circular list, the *prev* pointer of the first element is set to point to the last element as well.
